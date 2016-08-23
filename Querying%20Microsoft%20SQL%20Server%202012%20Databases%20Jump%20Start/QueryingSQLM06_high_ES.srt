@@ -1,0 +1,2744 @@
+1
+00:00:00,333 ---> 00:00:06,333
+[Music]
+
+2
+00:00:18,483 ---> 00:00:20,466
+>> Está bien. Bienvenido. Tobias y quiero dar las gracias
+
+3
+00:00:20,333 ---> 00:00:23,466
+por pasar un rato con nosotros hoy y desear continuar
+
+4
+00:00:23,483 ---> 00:00:26,466
+nuestra discusión sobre la consulta, pero voy a utilizar ese término libremente
+
+5
+00:00:26,483 ---> 00:00:30,466
+para este módulo en SQL Server 2012. Hemos estado hablando de,
+
+6
+00:00:30,483 ---> 00:00:34,466
+cinco módulos, para consultar contenidos. Vamos
+
+7
+00:00:34,483 ---> 00:00:39,466
+a cambiar un poco para hablar acerca de la inserción
+
+8
+00:00:39,483 ---> 00:00:42,466
+y la actualización de los datos y cómo podemos proteger los datos que
+
+9
+00:00:42,483 ---> 00:00:45,166
+estamos introduciendo y actualizando. Así que vamos a ver
+
+10
+00:00:45,483 ---> 00:00:48,466
+aquí, inserciones, actualizaciones, eliminaciones. Vamos a hablar de
+
+11
+00:00:48,483 ---> 00:00:52,466
+el uso de valores predeterminados, restricciones y desencadenadores. Así que
+
+12
+00:00:52,200 ---> 00:00:54,466
+lo que queremos es que puedan asegurarse de que estamos recuperando
+
+13
+00:00:54,483 ---> 00:00:57,466
+contenido, y ya hemos hablado en varios módulos de la forma en que
+
+14
+00:00:57,483 ---> 00:01:00,383
+vamos a hacerlo, pero queremos asegurarnos de que estamos agregando contenido
+
+15
+00:01:00,466 ---> 00:01:03,466
+que entendemos que el viejo G / L, la basura en / basura.
+
+16
+00:01:03,483 ---> 00:01:06,466
+Y si no tienen cosas como limitaciones y no tenemos procedimientos de integridad
+
+17
+00:01:06,483 ---> 00:01:11,466
+de datos en su lugar, que cuando consultamos los contenidos,
+
+18
+00:01:11,483 ---> 00:01:13,466
+no puede ser contenido válido. Así que vamos a buscar formas para
+
+19
+00:01:13,483 ---> 00:01:16,466
+insertar, actualizar, borrar el contenido, validar el contenido
+
+20
+00:01:16,483 ---> 00:01:19,466
+lo mejor que posible para asegurarse de que tenemos buen contenido que va
+
+21
+00:01:19,483 ---> 00:01:22,466
+dentro, por lo que realizamos algunas de estas tareas que hemos hablado
+
+22
+00:01:22,483 ---> 00:01:25,333
+en los módulos anteriores. Tenemos cosas buenas volviendo
+
+23
+00:01:25,483 ---> 00:01:27,466
+hacia fuera, no basura como somos tan... como habíamos hablado de nuevo.
+
+24
+00:01:27,483 ---> 00:01:30,333
+Por eso queremos evitar la basura de Entrada/  basura de Salida. Vamos
+
+25
+00:01:30,483 ---> 00:01:33,416
+a echar un vistazo en este módulo aquí. Lo que hemos estado hablando
+
+26
+00:01:33,483 ---> 00:01:36,466
+son DD.... Instrucciones DML. Esto debería ser DML, así.
+
+27
+00:01:36,483 ---> 00:01:39,466
+Déjame ver de qué se trata. Sí, esto debería ser DML.
+
+28
+00:01:39,483 ---> 00:01:42,466
+son sentencias de manipulación de datos. Por lo tanto la consulta,
+
+29
+00:01:42,483 ---> 00:01:46,466
+utilizando un equipo de selección, es un DML. Este es también un DML.
+30
+00:01:46,483 ---> 00:01:49,283
+Vamos a hablar de inserciones y actualizaciones y eliminacion. DDL son declaraciones
+
+31
+00:01:49,366 ---> 00:01:52,466
+donde creamos objetos, modificamos objetos o alteramos objetos.
+
+32
+00:01:52,483 ---> 00:01:56,466
+Por lo que este debe ser DML en lugar de DDL, pero vamos a hablar
+
+33
+00:01:56,483 ---> 00:01:59,466
+sobre las sentencias DML, vamos a seguir hablando de las sentencias DML porque
+
+34
+00:01:59,483 ---> 00:02:02,466
+una instrucción de selección es un DML también. Así que vamos a echar un vistazo a
+
+35
+00:02:02,483 ---> 00:02:05,466
+cómo obtenemos contenido allí. Así que de nuevo, una de nuestras preocupaciones es
+
+36
+00:02:05,483 ---> 00:02:08,333
+que queremos evitar la basura en la basura, por lo que vamos
+
+37
+00:02:08,416 ---> 00:02:10,466
+a buscar la manera de poder hacer eso. Ahora, vamos a agregar contenido.
+
+38
+00:02:10,483 ---> 00:02:13,466
+Se trata de una inserción bastante sencillo en la declaracion.
+
+39
+00:02:14,216 ---> 00:02:16,466
+Vamos a insertarlo en la produccion. UnitMeasure.
+
+40
+00:02:17,416 ---> 00:02:19,366
+Si no sabemos el nombre de las columnas o que no queremos
+
+41
+00:02:19,450 ---> 00:02:22,466
+dar el nombre... o los valores de ciertas órdenes, suministramos
+
+42
+00:02:22,483 ---> 00:02:25,466
+los nombres de columna. Así que si nos fijamos en la unidad de medida, hay
+
+43
+00:02:25,483 ---> 00:02:28,466
+nombre, hay código de unidad de medida, hay fecha de modificación. Si yo
+
+44
+00:02:28,483 ---> 00:02:32,466
+Si hiciera un select asterisco de unidad medida, es realmente medir
+
+45
+00:02:32,166 ---> 00:02:35,466
+código, nombre y modificar la fecha. Es en realidad cómo se almacena
+
+46
+00:02:35,483 ---> 00:02:39,466
+en el contenido. Pero si queremos aplicar valores a las columnas, 
+
+47
+00:02:39,483 ---> 00:02:42,466
+no tienen que estar en cierto orden, como se incluyen los
+
+48
+00:02:42,483 ---> 00:02:45,466
+encabezados de columna. Eso es lo que hemos hecho en el ejemplo
+
+49
+00:02:45,183 ---> 00:02:48,466
+superior aquí. Ahora, otra forma podemos añadir contenido es insertar.
+
+50 
+00:02:48,483 ---> 00:02:51,466 
+Esto es insertando simplemente una base fila. Y fíjese qué estamos 
+
+51 
+00:02:51,483 ---> 00:02:55,466 
+Haciendo click aquí. Estamos agregando un valor en la columna nombre denominado square 
+
+52 
+00:02:55,483 ---> 00:03:00,166 
+los astilleros y la unidad de medida código es Y2 y la fecha de modificación, 
+
+53 
+00:03:00,250 ---> 00:03:02,466 
+vamos a ir a recuperar la fecha del sistema. 
+
+54 
+00:03:02,483 ---> 00:03:06,466 
+Podríamos codificar una fecha, pero que en realidad estamos recuperando 
+
+55 
+00:03:06,483 ---> 00:03:09,466 
+la fecha del sistema. Esta es la adición de una sola fila. Podemos agregar 
+
+56 
+00:03:10.483 ---> 00:03:13,466 
+V
+varias filas con una declaración similar, pero en valores qué 
+
+57 
+00:03:13,483 ---> 00:03:15,466 
+vamos a agregar varias apariciones 
+
+58 
+00:03:15,483 ---> 00:03:18,466 
+del valor. Ahora estamos agregando pies cuadrados y pulgadas cuadradas 
+
+59 
+00:03:18,483 ---> 00:03:23,466 
+y vamos a usar F2 y I2 para las pulgadas. Así que esta es la 
+
+60 
+00:03:23,483 ---> 00:03:27,466 
+la cuadratura de aquellos tipos de mediciones aquí. Así es cómo 
+
+61 
+00:03:27,483 ---> 00:03:29,466 
+podemos insertar algunos de los datos. 
+
+62 
+00:03:29.483 ---> 00:03:33,466 
+También podemos utilizar lo que se denomina un inserto en el contenido, pero 
+
+63 
+00:03:33,483 ---> 00:03:37,333 
+ahora, en lugar de suministrar los valores, vamos a utilizar la instrucción select. 
+
+64 
+00:03:37,416 ---> 00:03:40,466 
+Así, en lugar de insertar seleccione la opción, y qué vamos a hacer 
+
+65 
+00:03:40,483 ---> 00:03:43,466 
+para rellenar este nombre y unidad de medida código y modificar la fecha, 
+
+66 
+00:03:43,483 ---> 00:03:46,466 
+vamos a seleccionar nombre, unidad de medida, código y fecha de modificación. 
+
+67 
+00:03:46,483 ---> 00:03:49,466 
+A partir de alli, vamos a decir, una unidad temporal tabla que fue... que existe 
+
+68 
+00:03:49,483 ---> 00:03:52,466 
+ahí fuera. Por lo que vamos a llevar el contenido a través de una selecta 
+
+69 
+00:03:52,483 ---> 00:03:57,200 
+declaración y vamos a rellenar en la medida de unidad 
+
+70 
+00:03:57,283 ---> 00:04:01,466 
+tabla de contenido. Perdóneme. Y no tenemos que coger todo.
+
+71
+00:04:02,166 --> 00:04:04.466
+Debido a que estamos utilizando una instrucción de selección, podríamos decir que sólo
+
+72
+00:04:04,483 --> 00:04:08.466
+desee insertar el contenido desde el 1 de enero de 2008. La buena
+
+73
+00:04:08,483 --> 00:04:12.333
+noticias de esta clase se Voy a aprender a entender estas
+
+74
+00:04:12,483 --> 00:04:15,466
+marcas de tiempo en el orden inverso. Ese es mi objetivo. Así que esto es enero
+
+75
+00:04:15,483 --> 00:04:19.466
+1 de 2008, y vamos sólo para agregar el contenido que es menos que eso.
+
+76
+00:04:20,483 --> 00:04:22.466
+Cualquier cosa mayor que eso, no vamos a añadirla en el contenido.
+
+77
+00:04:22.483 --> 00:04:26.166
+Así que todavía tenemos el control del contenido que se añadió. El insert
+
+78
+00:04: 26,483 --> 00:04:29.466
+en la instrucción de ejecución, vamos a insertar en éstas
+
+79
+00:04:29,483 --> 00:04:32.466
+tres columnas de nuevo, pero esta vez, en cambio, vamos a ejecutar
+
+80
+00:04:32,483 --> 00:04:35.300
+un procedimiento tienda y vamos a pasar a algunas variables,
+
+81
+00:04:35.383 --> 00:04:38.466
+los números de fila cinco y el ID de la categoría de 1, y por eso va
+
+82
+00:04:38.483 --> 00:04:42.466
+a ejecutar nuestro unico insert contenido en esta tabla que cumpla
+
+83
+00:04:42,483 --> 00:04:46.466
+las únicas cinco filas, siempre y cuando la categoría ID es igual a uno.
+
+84
+00:04:46,483 ---> 00:04:50.466
+Así que de nuevo, estamos controlando lo que el contenido que estamos añadiendo a
+
+85
+00:04:50,483 ---> 00:04:52.466
+las tablas, y eso es un gran problema, para asegurarse de que no estamos
+
+86
+00:04:53.333 ---> 00:04:57.416
+añadiendo que la basura dentro. Vamos a llevar a cabo también en un grupo selecto.
+
+87
+00:04:57,483 ---> 00:04:59.466
+Una vez más, vamos a hacer un nombre en clave de selección de la unidad de medida y
+
+88
+00:05:00,333 ---> 00:05:05,200
+modificar la fecha dentro. Así que ahora estamos tomando contenidos en una tabla temporal.
+
+89
+00:05:05,283 ---> 00:05:08.466
+Así que are una copia de una diapositiva o dos antes de utilizar una tabla temporal.
+
+90
+00:05:08,483 ---> 00:05:11,383
+Podría haber creado la tabla temporal de contenidos que es
+
+91
+00:05:11,466 ---> 00:05:14.466
+dentro de la tabla Unidad de Medida. Podía hacer un nombre y seleccion de la unidad
+
+92
+00:05:14,483 ---> 00:05:18.466
+código de la medida y modificar la fecha, que son columnas dentro de la unidad
+
+93
+00:05:18,483 ---> 00:05:21.466
+medir la tabla de la derecha aquí, y voy a seleccionar e insertarlos
+
+94
+00:05:21,483 ---> 00:05:25.466
+en una tabla nueva llamada temp UOM tabla. Y de nuevo, voy
+
+95
+00:05:25,483 ---> 00:05:28.466
+a ser específico acerca de qué contenidos ordenados esten allí, se
+
+96
+00:05:28,483 ---> 00:05:31.466
+poblada de allí porque me voy a poner la fecha del pedido
+
+97
+00:05:33,483 ---> 00:05:37.466
+es antes del 1 de enero del 2008. Así que de nuevo, el control de lo que estoy
+
+98
+00:05:37,483 ---> 00:05:41,0
+haciendo cuando estoy añadiendo contenidos allí. Ahora, una de las cosas
+
+99
+00:05:41.483 ---> 00:05:44.466
+podemos querer es crear lo que se llama una columna de identidad.
+
+100
+00:05:44,483 ---> 00:05:47.466
+Una columna de identidad me permite crear una columna que no
+
+101
+00:05:47,483 ---> 00:05:52.466
+necesita llenarse por mi mismo. Decido qué artículos o números de lo que
+
+102
+00:05:52,483 ---> 00:05:55.466
+quiero allí. Así que lo que hago es que creé valor entero. creo lo que
+
+103
+00:05:55,483 ---> 00:05:59.466
+tenemos aquí ... sí, tenemos identificación del producto y la identidad, y
+
+104
+00:05:59,483 ---> 00:06:03.466
+a continuación, identificamos lo que se llama la semilla en el valor de incremento.
+
+105
+00:06:03,483 ---> 00:06:06.466
+Por defecto es uno y uno. Así que si no especifico  eso, es
+
+106
+00:06:06,483 ---> 00:06:09.466
+uno y otro. Así que la primera fila a insertar va a conseguir el producto
+
+107
+00:06:09,483 ---> 00:06:12,466
+ID numero uno. La segunda fila se va a poner el número dos,
+
+108
+00:06:12,483 ---> 00:06:15,183
+la tercera fila se va a poner el número tres. Y los EE.UU., donde
+
+109
+00:06:15,266 ---> 00:06:18.466
+utilizan grados Fahrenheit o Celsius, la siguiente fila va a ser el número cuatro.
+
+110
+00:06:18.216 ---> 00:06:20.466
+En realidad no importa. Pero lo que haría algo diferente
+
+111
+00:06:20,483 ---> 00:06:25,316
+aquí es que podemos decir que queremos la semilla para iniciar a 100 en lugar de
+
+112
+00:06:25,400 ---> 00:06:28.466
+uno, y en lugar de incrementar por uno, vamos a incrementar
+
+113
+00:06:28,483 ---> 00:06:33.466
+por diez. La primera fila será de 100, entonces 110, luego 120, luego 130.
+
+114
+00:06:33,483 ---> 00:06:36.466
+Y luego se va a rellenar automático de la información
+
+115
+00:06:36,483 ---> 00:06:40.466
+para mí en lugar de que yo tenga que facilitar a dicha columna de identidad.
+
+116
+00:06:40,483 ---> 00:06:43.466
+Así que es una manera de generar automáticamente un número y tienen
+
+117
+00:06:43,483 ---> 00:06:47.466
+ese número poblado para mí defineel valor de incremento
+
+118
+00:06:47,483 ---> 00:06:50.466
+y que el valor de semilla de donde empezar. Ahora bien, esto está configurado
+
+119
+00:06:50,483 ---> 00:06:54.466
+en un nivel de tabla. Otra opción es la opción de secuencias.
+
+120
+00:06:54,483 ---> 00:06:58.466
+Esto es nuevo en SQL Server 2012. Esto me permite crear para
+
+121
+00:06:58,483 ---> 00:07:02.416
+la base de datos, por lo que esto va a crear secuencia llamada factura
+
+122
+00:07:02,483 ---> 00:07:05.466
+secuencia como un entero, y aquí está mi valor de la semilla. Comienza
+
+123
+00:07:05,483 ---> 00:07:09.466
+con cinco, y aquí está mi valor de incremento comenzar con cinco o incremento
+
+124
+00:07:09,483 ---> 00:07:13.466
+por cinco. Disculpe. Así que donde quiera que utilizo este invoice.suq,
+
+125
+00:07:13,483 ---> 00:07:17,466
+va a comenzar, la primera fila va a ser añadido como 5, la
+
+126
+00:07:17.483 ---> 00:07:21.366
+siguiente fila será de diez, 15, 20, etcétera. Y luego si quiero
+
+127
+00:07:21,450 ---> 00:07:24.466
+para recuperar la información y lo que es el último número que se utilizó?
+
+128
+00:07:24,483 ---> 00:07:29.433
+Puedo seleccionar siguiente valor para la secuencia DBO.invoice. Así que el ultimo
+
+129
+00:07:29,483 ---> 00:07:33.466
+número utilizado fue de 25, el siguiente valor sería 30. Si soy rápido
+
+130
+00:07:33,233 ---> 00:07:37.466
+con las matemáticas, no puedo hacer 25 ... 30 menos cinco es el 25. Así Que ESTO Haría
+
+131
+00:07:37,483 ---> 00:07:39.466
+recuperar lo que se va a utilizar lo que está pasando al siguiente valor
+
+132
+00:07:39,483 ---> 00:07:43.466
+a poblarse mediante esta opción secuencias, que, una vez mas,
+
+133
+00:07:43,483 ---> 00:07:47.183
+para 2012 y configurar más en lugar de un nivel de tabla como la identidad,
+
+134
+00:07:47,266 ---> 00:07:49.466
+que está establecido en el nivel de base de datos.
+
+135
+00:07:50,483 ---> 00:07:53.416
+Ahora, formas de modificar el contenido. Podríamos almacenar el contenido en
+
+136
+00:07:53,483 ---> 00:07:55.466
+SQL Server y darnos cuenta, oops, no debería haber hecho de esa manera
+
+137
+00:07:55,483 ---> 00:07:59.283
+o tengo que cambiar eso. Tenemos la instrucción de actualización, de acuerdo?
+
+138
+00:07:59,366 ---> 00:08:02.333
+Ahora, vamos a tener cuidado con esto. Actualización Production.UnitMeasure,
+
+139
+00:08:02,483 ---> 00:08:06.466
+establecer las fechas iguales, modificar obtener la fecha ... escuchar fecha. Ahora, si paraba
+
+140
+00:08:06,483 ---> 00:08:10.466
+allí mismo y se acaba de ejecutar esta declaración, ¿qué he hecho solo?
+
+141
+00:08:11,366 ---> 00:08:16.233
+De hecho, me he actualizado cada fila de la columna Unidad de Medida, mesa
+
+142
+00:08:16.483 ---> 00:08:20.466
+para establecer la fecha de modificación hasta la fecha de hoy. Lo que hay que hacer es,
+
+143
+00:08:20,483 ---> 00:08:24,350
+específicamente tener más cuidado asegurarse de que la oferta
+
+144
+00:08:24.433 ---> 00:08:27.466
+donde cláusula where código de unidad de medida igual M2. Ahora se va
+
+145
+00:08:27.483 ---> 00:08:32.466
+que sólo van a la M2, al corredor de millas cuadradas, y que va a
+
+146
+00:08:32,483 ---> 00:08:37.466
+establecer la fecha de modificación hasta la fecha de hoy, ya que estamos utilizando el sistema
+
+147
+00:08:37,166 ---> 00:08:41.216
+valor aquí, función para obtener la fecha de hoy y poblar eso.
+
+148
+00:08:41,300 ---> 00:08:43.466
+Una vez más, ser muy cauteloso cuando estás haciendo la actualización para asegurarse
+
+149
+00:08:43,483 ---> 00:08:47.466
+se suministra una cláusula where, a menos que desee cada fila que se debe actualizar.
+
+150
+00: 08: 48,350 ---> 00: 08: 51.466
+Muy similar a la que tenemos, de otra forma podemos modificar
+
+151
+00: 08: 51,483 ---> 00: 08: 54.466
+fecha que se denomina la fusión. Ahora, aquí es donde puedo usar una combinación
+
+152
+00: 08: 54,483 ---> 00: 08: 58.466
+para modificar la base de datos en cualquiera de las siguientes condiciones.
+
+153
+00: 08: 58,483 ---> 00: 09: 01.466
+Que coincide con la diana, la fuente no tiene ninguna coincidenca en un objetivo, o
+
+154
+00: 09: 02,483 ---> 00: 09: 04.300
+cuando el objetivo tiene ninguna coincidencia en una fuente. Así que este es un buen
+
+155
+00: 09: 04,383 ---> 00: 09: 08.466
+camino para que seamos capaces de actualizar el contenido dentro de una base de datos.
+
+156
+00: 09: 09,483 ---> 00: 09: 16.300
+>> Sí, pensé que nos gustaría hacer un poco de demostración, basta con ver la mezcla, y
+
+157
+00: 09: 16,383 ---> 00: 09: 20.183
+vamos a hacer un poco de una cosa perdida para mostrar un poco la
+
+158
+00: 09: 20.266 ---> 00: 09: 23.466
+funcionalidad XML que tenemos así en el producto, porque el
+
+159
+00: 09: 23,483 ---> 00: 09: 27.466
+tipo de ajustes es agradable en este tema en particular. Así que tengan paciencia conmigo
+
+160
+00: 09: 27.483 ---> 00: 09: 30.466
+que tenemos una especie de ejemplo interesante ir.
+
+161
+00: 09: 30,483 ---> 00: 09: 32.466
+>> He intercambiado su teclado, por cierto, porque el otro
+
+162
+00: 09: 32,483 ---> 00: 09: 38.433
+esta quemado, por lo que debe ser bueno para ir por un rato.
+
+163
+00: 09: 38,450 ---> 00: 09: 38.466
+>> Gracias, Brian.
+
+164
+00: 09: 39,483 ---> 00: 09: 40.466
+>> ¿Tienes un túnel carpiano o cualquier cosa, amigo? No creo
+
+165
+00: 09: 40,483 ---> 00: 09: 43.466
+usted tiene tiempo para túnel carpiano. Creo que los nervios no lo hacen, incluso ...
+
+166
+00: 09: 44,483 ---> 00: 09: 49.316
+>> Bueno. Así que digamos que lo que yo quiero hacer es que quiero recuperar
+
+167
+00: 09: 49,400 ---> 00: 09: 52.466
+productos en formato XML. Luego, más tarde Quiero ser capaz de agarrar
+
+168
+00: 09: 52,483 ---> 00: 09: 57.166
+ese XML que se pasa del cliente y en realidad actualizar un conjunto
+
+169
+00: 09: 57.250 ---> 00: 10: 01.466
+de los productos, actualizar o insertar un conjunto de productos basados en esta
+
+170
+00: 10: 01,483 ---> 00: 10: 05.250
+definición XML. Así que voy a empezar con sólo la simplificación de la tabla
+
+171
+00: 10: 05,333 ---> 00: 10: 08.466
+un poco así que no es tan complicado para mí sólo realizar
+
+172
+00: 10: 08,483 ---> 00: 10: 11.466
+el inserto porque hay tantas columnas aquí. Así que sólo
+
+173
+00: 10: 11,483 ---> 00: 10: 15,466
+tomo el ID del producto, y digamos, nombre y eso va a ser suficientemente
+
+174
+00: 10: 15,483 ---> 00: 10: 20.466
+para mi. Y voy a usar esto en palabra clave, y sólo para ser claro,
+
+175
+00: 10: 20,483 ---> 00: 10: 24.466
+antes teníamos ejemplos en las tablas fueron llamados temperatura algo.
+
+176
+00:10:24,483 ---> 00:10:28,466
+Ellas no necesariamente eran tablas temporales, que es algo diferente,
+
+177
+00:10:28,483 ---> 00:10:34.466
+o algo un poco diferente. Así que voy a llamar a esta tabla sólo productos.
+
+178
+00:10:36.333 ---> 00:10:38.466
+Así que estoy tratando estas dos columnas y ponerlas en esta tabla.
+
+179
+00:10:39,483 ---> 00:10:44.466
+Ahora vamos a empezar por el acaparamiento de este pregunte XML. Así que quiero agarrar
+
+180
+00:10:44,483 ---> 00:10:47.466
+todas las columnas o todos los productos, más bien,
+
+181
+00:10:48,483 ---> 00:10:54.466
+donde el nombre comienza con una A, digamos, como un filtro. Bueno.
+
+182
+00:10:54,483 ---> 00:10:55.466
+Bueno. Tres de ellos.
+
+183
+00:10:56,366 ---> 00:11:00.433
+Y me gustaría que esta vez regresara como XML, así que voy a decir por
+
+184
+00:11:00,483 ---> 00:11:04.466
+XML, y la mejor ... lo que normalmente se utiliza para la ruta es XML.
+
+185
+00:11:04,483 ---> 00:11:08.466
+Hay fila para XML explícita y la ruta, pero el camino es el
+
+186
+00:11:08,483 ---> 00:11:09.466
+uno más potente.
+
+187
+00:11:11,166 ---> 00:11:13.466
+Ahora, ¿por qué le gustaría volver a algo como XML? Resulta
+
+188
+00:11:13,483 ---> 00:11:18.466
+que su formato es muy práctico para el intercambio entre sistemas.
+
+189
+00:11:18,483 ---> 00:11:21.466
+Así que si quieres pasar una serie de SQL Server a otra cosa,
+
+190
+00:11:21,483 ---> 00:11:24.466
+XML es una de las buenas formatos para su uso.
+
+191
+00:11:25,483 ---> 00:11:28,466
+Tenemos una pregunta común si apoyamos el formato JSON, que no hacemos
+
+192
+00:11:28,483 ---> 00:11:32.466
+hacer todavía. Obviamente se puede convertir XML en JSON y su versión
+
+193
+00:11:32,483 ---> 00:11:33.400
+en el lado del cliente.
+
+194
+00:11:34,483 ---> 00:11:38.466
+Así que de todos modos, en cualquier caso, voy a decir, está bien, que tome esto y por
+
+195
+00:11:38.483 ---> 00:11:42.466
+cada fila quiero generar un elemento llamado producto, y yo
+
+196
+00:11:42,483 ---> 00:11:47.450
+deseo que el elemento raíz, la raíz llamada, digamos, productos.
+
+197
+00:11:49,483 ---> 00:11:50.250
+Lo que por defecto
+
+198
+00:11:51,483 ---> 00:11:56.466
+para la ruta de XML y el asterisco ... allí.
+
+199
+00:11:59,283 ---> 00:12:02.466
+Así que ahora se puede ver consigo algún incumplimiento por parte XML de nuevo, y esta es la
+
+200
+00:12:02,483 ---> 00:12:05,0
+estructura por defecto que vuelva. Así que esto se puede ver para cada fila
+
+201
+00:12:05,483 ---> 00:12:09.466
+Consigo uno de esos y me sale una de las ... esta cosa raíz generada
+
+202
+00:12:09,483 ---> 00:12:13.466
+como por mi ... cláusula FOR XML. Y se puede ver de forma predeterminada consigo
+
+203
+00:12:13,483 ---> 00:12:18.466
+un elemento, llamado un elemento en XML para cada columna. Pero yo
+
+204
+00:12:18,483 ---> 00:12:19,350
+puedo llamar...
+
+205
+00:12:20,366 ---> 00:12:23.466
+nómbralas un poco diferente para cambiar básicamente el formato.
+
+206
+00:12:23,200 ---> 00:12:24,366
+Así que voy a llamar a éste
+
+207
+00:12:26,0 ---> 00:12:28.333
+Identificación y el
+
+208
+00:12:29,483 ---> 00:12:33.466
+@ Señal significa que me gustaría que fuera un atributo en lugar de un elemento.
+
+209
+00:12:34,383 ---> 00:12:37.466
+Y por eso uso estas comillas es sólo porque el signo @
+
+210
+00:12:37,483 ---> 00:12:42.466
+tiene un significado en SQL, ¿verdad? Así que es un identificador delimitado y
+
+211
+00:12:42,483 ---> 00:12:46.466
+quiero el nombre al igual que este. Porque hacer todo minusculas? porque
+
+212
+00:12:46,166 ---> 00:12:49.450
+es por definición XML mayúsculas y minúsculas, así que para mí, al menos,
+
+213
+00:12:49,483 ---> 00:12:51.466
+se simplifica si todo está en minúsculas.
+
+214
+00:12:51,483 ---> 00:12:56.466
+Y ahora el XML que me estoy poniendo de nuevo se parece a esto.
+
+215
+00:12:56,483 ---> 00:12:58.183
+¿Bueno? Así se puede ver que en realidad es ...
+
+216
+00:12:58,266 ---> 00:12:58.433
+>> Limpio ....
+
+217
+00:12:58,483 ---> 00:13:02.466
+>> Bastante simple para recuperar un documento XML. Usted puede hacer más
+
+218
+00:13:02,233 ---> 00:13:04.466
+elaborar cosas con subconsultas y crear estructuras de árbol,
+
+219
+00:13:05,483 ---> 00:13:09.466
+así, pero este tipo le ayudará a comenzar. Así que ahora nos toma los datos.
+
+220
+00:13:10,366 ---> 00:13:14.400
+Ahora quiero mirar lo que si quiero utilizar esto como una forma de
+
+221
+00:13:14,483 ---> 00:13:17,466
+insertar nuevos datos en la tabla, o actualizar los datos?
+
+222
+00:13:18,483 ---> 00:13:23.283
+Así que digamos que estamos pasando esta de vuelta a través del servidor y
+
+223
+00:13:23,366 ---> 00:13:27.466
+en realidad tenemos un tipo de datos llamado XML. Así que vamos a decir, está bien,
+
+224
+00:13:28,483 ---> 00:13:32.466
+este, que apoyamos la conversión implícita hacia y desde la cadena.
+
+225
+00:13:33,483 ---> 00:13:37.350
+Así que me pase esto en el servidor, y vamos a añadir un nuevo producto.
+
+226
+00:13:37,433 ---> 00:13:39,466
+Y no sé qué ID que va a conseguir porque no hay
+
+227
+00:13:40,483 ---> 00:13:44.466
+una identidad allí, así que en realidad sólo lo puso dentro. Así 10.000,
+
+228
+00:13:44,483 ---> 00:13:52.333
+100.000 Tobias. Bueno. Así que esta es una nueva. Y digamos que
+
+229
+00:13:52,483 ---> 00:13:54.466
+va a actualizar esto, así que vamos a añadir un signo de exclamación en el
+
+230
+00:13:54,483 ---> 00:13:59.283
+final de estos tres. Por lo que sólo viendo ahora me pase la a través
+
+231
+00:13:59,366 ---> 00:14:02.466
+del servidor, se analiza en una estructura XML internamente y luego
+
+232
+00:14:02,483 ---> 00:14:04.466
+puedo ir a consultarlo.
+
+233
+00:14:04,483 ---> 00:14:09.466
+Así que ahora estamos haciendo lo contrario. Antes me genera XML desde nuestros
+
+234
+00:14:09,483 ---> 00:14:14.400
+resultados al pasar de tabla para XML. Ahora voy hacer lo contrario.
+
+235
+00:14:14,483 ---> 00:14:19.466
+Así que voy a hacer la selección de estrellas de mi variable XML, y tiene unos pocos
+
+236
+00:14:19,483 ---> 00:14:22.466
+métodos a la misma, y los nodos es uno de los más interesantes. Así que básicamente,
+
+237
+00:14:23.333 ---> 00:14:26.466
+decir, hey, ir a buscar a esta X
+
+238
+00:14:28,483 ---> 00:14:34.466
+expresión de ruta, que es algo así como seleccione en contra de la ...
+
+239
+00:14:34,483 ---> 00:14:38.466
+de una cláusula where hecho básicamente contra una estructura XML.
+
+240
+00:14:39,333 ---> 00:14:43,466
+Así que, básicamente, esto dice para cada producto indicado en el mismo,
+
+241
+00:14:43,483 ---> 00:14:48.466
+dame una fila de atrás. Y vamos a llamar a este XT como ... es el conjunto
+
+242
+00:14:48,483 ---> 00:14:51.466
+llama XT y le proporcione una columna que incluye el código XML
+
+243
+00:14:51,483 ---> 00:14:55.466
+elemento que llamaré XC, por lo que la columna. Así que ahora lo que puedo decir,
+
+244
+00:14:55,483 ---> 00:14:57.466
+bien, XT.XC.value,
+
+245
+00:14:59,483 ---> 00:15:03.466
+y puedo usar esto para entrar en los elementos del producto y agarrar las cosas.
+
+246
+00:15:03,483 ---> 00:15:07.466
+Así que voy a ir y decir, bueno, me gustaría agarrar el atributo ID
+
+247
+00:15:08,483 ---> 00:15:12,466
+y me gustaría que usted pueda agarrar esto como un entero, y voy a llamar
+
+248
+00:15:12,483 ---> 00:15:13.466
+este identificador de producto.
+
+249
+00:15:15,483 ---> 00:15:17.383
+Y también me gustaría que entres en el
+
+250
+00:15:18,483 ---> 00:15:21.466
+elemento y me agarra el atributo de nombre y volver esto como ...
+
+251
+0015:21,483 ---> 00:15:23.466
+No sé, NVARCHAR1000,
+
+252
+00:15:24,483 ---> 00:15:25.466
+digamos,
+
+253
+00:15:26,483 ---> 00:15:27.433
+como nombre.
+
+254
+00:15:28,483 ---> 00:15:33.466
+Así que vamos a seguir adelante y ejecutar esto y seguir adelante y simplemente
+
+255
+00:15:33,483 ---> 00:15:39.466
+comente lo que tengo aquí arriba. Bueno. Así que de nuevo, paso
+
+256
+00:15:39,483 ---> 00:15:43,366
+en la estructura. Yo digo que me agarra cada elemento producto de los
+
+257
+00:15:43,450 ---> 00:15:44.233
+y enviar el presente.
+
+258
+00:15:44,483 ---> 00:15:45.466
+Ah bien. Bonito.
+
+259
+00:15:45,483 ---> 00:15:46.250
+>> Niza.
+
+260
+00:15:46,333 ---> 00:15:49.466
+>> Ahora puede analizar este XML muy bien. Y ahora tengo un conjunto.
+
+261
+00:15:50,483 ---> 00:15:53,466
+Así que ahora, hmm, lo que que pasaria si usara la instrucion de 
+
+262
+00: 15: 53,483 ---> 00: 15: 57.466
+combinar estos datos de la estructura XML en la tabla. Así que voy a
+
+263
+00: 15: 57,483 ---> 00: 15: 59.166
+decir fundirse en
+
+264
+00: 16: 00,483 ---> 00: 16: 05.466
+productos, supongo que la tabla fue llamada a pedir la pregunta en el destino, ¿verdad?
+
+265
+00: 16: 05,483 ---> 00: 16: 06.466
+>> Sí.
+
+266
+00: 16: 06,483 ---> 00: 16: 11.166
+>> Usando mi variable XML, y ahora tendría que pegar este conjunto
+
+267
+00: 16: 11,483 ---> 00: 16: 13.466
+allí, pero ya sabemos acerca de las expresiones de tabla comunes,
+
+268
+00: 16: 13,483 ---> 00: 16: 17,466
+yo sólo pude decir, bueno, vamos a llamar a esta fuente.
+
+269
+00: 16: 17.483 ---> 00: 16: 19.466
+>> O una fuente.
+
+270
+00: 16: 20,483 ---> 00: 16: 23.466
+>> Así que ahora tengo una expresión de tabla común llamada SRC. Por lo que quisiera
+
+271
+00: 16: 24,0 ---> 00: 16: 25.466
+decir que el uso de SRC,
+
+272
+00: 16: 26,483 ---> 00: 16: 31.300
+por lo que ahora me uno a la tabla con mi documento XML en SRC.product
+
+273
+00: 16: 31,483 ---> 00: 16: 36.466
+ID es igual al ID de producto de destino.
+
+274
+00: 16: 37,483 ---> 00: 16: 40.466
+Y entonces puedo empezar a utilizar estos diversos eventos que nos hará
+
+275
+00: 16: 40,483 ---> 00: 16: 43.466
+ir a través de la cuenta de fusión. Así que, básicamente, lo que puedo decir cuando
+
+276
+00: 16: 46,333 ---> 00: 16: 49.233
+creo que no es comparable, por lo que si
+
+277
+00: 16: 50,483 ---> 00: 16: 54.466
+el identificador de producto no se encuentra en el destino, entonces yo
+
+278
+00: 16: 54,483 ---> 00: 16: 58.466
+quisiera insertar, obviamente. Así que voy a seguir adelante y decir insertar
+
+279
+00: 16: 58,483 ---> 00: 17: 01.466
+obviamente, el destino, por lo que no dicen nada que no sea
+
+280
+00: 17: 01,483 ---> 00: 17: 10.466
+ese nombre de la columna, por lo que el ID del producto, el nombre y los valores, ID destination.product ...
+
+281
+00: 17: 10,483 ---> 00: 17: 12,466
+o lo siento ... producto de código de identificación,
+
+282
+00: 17: 14,383 ---> 00: 17: 18.466
+nombre de la fuente. Bueno. Así que cuando no lo encuentra, se inserta,
+
+283
+00: 17: 18,483 ---> 00: 17: 22.466
+y luego, empareja, me gustaría que se actualice.
+
+284
+00: 17: 22.483 ---> 00: 17: 27.466
+Así al actualizar el conjunto de la fuente de identificación del producto, obviamente, no puede cambiar.
+
+285
+00: 17: 27.483 ---> 00: 17: 33.366
+A fin de establecer el nombre igual al ID del producto de origen. Y, obviamente, tengo ...
+
+286
+00: 17: 33.450 ---> 00: 17: 36.466
+no, eso parece correcto. Bueno. Vamos a ver si esto funciona.
+
+287
+00: 17: 38,266 ---> 00: 17: 39.366
+Oh, es una identidad.
+
+288
+00: 17: 39.450 ---> 00: 17: 39.466
+>> Sí.
+
+289
+00: 17: 39,483 ---> 00: 17: 44.466
+>> Es una columna de identidad. Ah-ha. Aquí vamos. Aquí vamos.
+
+290
+00: 17: 44,483 ---> 00: 17: 46.466
+Vamos a no incluir el identificador de producto a continuación.
+
+291
+00: 17: 47,483 ---> 00: 17: 50,0
+Y no hay que incluirla en el XML o bien,
+
+292
+00: 17: 51,483 ---> 00: 18: 02.333
+y ahí vamos. Así que ahora se agrega en realidad estos y que puede ir
+
+293
+00: 18: 02,416 ---> 00: 18: 07.333
+y seleccionar, ejecutar la instrucción de selección de la tabla de nuevo por
+
+294
+00: 18: 07,416 ---> 00: 18: 15,466
+el XML, para agarrar el XML y digo, como A o nombre como Tobias.
+
+295
+00: 18: 15,483 ---> 00: 18: 20,166
+TOB, por lo que tenemos esa fila, también.
+
+296
+00: 18: 22.483 ---> 00: 18: 25.466
+Y ahora se puede ver que los signos de admiración son de allí y
+
+297
+00: 18: 25,483 ---> 00: 18: 26.466
+Se añadió Tobias.
+
+298
+00: 18: 27.483 ---> 00: 18: 31.333
+La última cosa que quería mostrar, que es un poco más interesante,
+
+299
+00: 18: 31,483 ---> 00: 18: 37.466
+vamos a llegar... Vamos a obtener el valor correcto en Tobias allí.
+
+300
+00: 18: 38.483 ---> 00: 18: 40.466
+Así que me dio 1.000. Bueno.
+
+301
+00: 18: 40,483 ---> 00: 18: 45.416
+Genial. Así el ID es igual a 1,000.
+
+302
+00: 18: 46,0 ---> 00: 18: 49.466
+Digamos que quería eliminar también. Así que digamos que, de acuerdo,
+
+303
+00: 18: 49,483 ---> 00: 18: 53.466
+desea eliminar este casquillo del logotipo AW Sede. ¿Cómo voy a hacer esto?
+
+304
+00: 18: 53,483 ---> 00: 18: 56.466
+Tenemos el apoyo algo donde se puede decir cuando no coincide
+
+305
+00: 18: 56,483 ---> 00: 18: 59.466
+en la fuente. Eso es muy peligroso porque eso significa que si no es
+
+306
+00: 19: 00,0 ---> 00: 19: 01.466
+en este set, se retirara.
+
+307
+00: 19: 01,483 ---> 00: 19: 02.466
+>> Sí.
+
+308
+00: 19: 02,483 ---> 00: 19: 04.466
+>> Lo que obviamente a continuación, eliminaría todos nuestros productos. Y qué
+
+309
+00: 19: 04,483 ---> 00: 19: 08.466
+Lo que podía hacer en su lugar es que puedo añadir otro atributo y decir, llamada
+
+310
+00: 19: 10,483 ---> 00: 19: 14.466
+se elimina y digo, la eliminación es igual a verdadera. Así que me gustaría
+
+311
+00: 19: 14,483 ---> 00: 19: 15,466
+eliminar éste.
+
+312
+00: 19: 16.483 ---> 00: 19: 19.233
+Diremos que tomamos desde el documento XML, también.
+
+313
+00: 19: 19,316 ---> 00: 19: 22.466
+Voy a decir, bueno, toma el campo de borrado como un poco
+
+314
+00: 19: 23,483 ---> 00: 19: 27.466
+y lo llamaré para borrar, prueba de supresión o inserción de palabras clave.
+
+315
+00: 19: 27.483 ---> 00: 19: 30.416
+Así que ahora estoy tomando si debe suprimirse o no, y puedo
+
+316
+00: 19: 30,483 ---> 00: 19: 33.466
+decir que acabe si no se encuentra, obviamente, devolverá un valor nulo. Así que voy a
+
+317
+00: 19: 33,483 ---> 00: 19: 36.466
+acabar muy bien, si no lo hace ... si se devuelve un valor nulo, entonces vamos a
+
+318
+00: 19: 36,483 ---> 00: 19: 38.466
+decir falsa, ¿verdad?
+
+319
+00: 19: 39,483 ---> 00: 19: 40.466
+Y no eliminar.
+
+320
+00: 19: 41,250 ---> 00: 19: 47.183
+Y ahora puedo decir cuando coinciden, entonces esto. Si la alineación no, entonces ...
+
+321
+00: 19: 47,483 ---> 00: 19: 53,0
+lo siento, cuando coinciden, y que eliminar es igual a uno,
+
+322
+00: 19: 56,483 ---> 00: 20: 02.466
+a continuación, eliminar, ¿verdad? Así que en realidad puede tener expresiones más complejas
+
+323
+00: 20: 02,483 ---> 00: 20: 06.466
+en el que la cláusula en lugar de simplemente decir compatible o no compatible.
+
+324
+00: 20: 06,483 ---> 00: 20: 10,450
+Obviamente, el otro tiene que ser lo contrario, ¿verdad? Por lo tanto,
+
+325
+00: 20: 10,483 ---> 00: 20: 14.466
+debe decir aquí, bueno, si es cero, entonces no ...
+
+326
+00: 20: 15,350 ---> 00: 20: 19.466
+a continuación, actualizar. Así que vamos a seguir adelante y tratar de ejecutar esto.
+
+327
+00: 20: 20,483 ---> 00: 20: 24.466
+Parece que funciona, ¿verdad? Así que de nuevo, no se observó, insertar. No coinciden
+
+328
+00: 20: 25,483 ---> 00: 20: 28.466
+y hacen eliminar la actualización falsa, o el partido, y luego hacerlo eliminar falsa actualización,
+
+329
+00: 20: 28,483 ---> 00: 20: 32.166
+y luego hacer emparejado y borrar uno, a continuación, elimine. Y ahora si
+
+330
+00: 20: 32,250 ---> 00: 20: 32.466
+que consultamos,
+
+331
+00: 20: 34,483 ---> 00: 20: 35.466
+se puede ver que se ha eliminado la fila.
+
+332
+00: 20: 35,483 ---> 00: 20: 36.233
+>> Sí.
+
+333
+00: 20: 36.316 ---> 00: 20: 36.466
+Bonito.
+
+334
+00: 20: 37,483 ---> 00: 20: 40.466
+>> Así que tienes un poco de una entrada en lo que puede hacer con
+
+335
+00: 20: 40,483 ---> 00: 20: 42.466
+XML y SQL Server 2012, también.
+
+336
+00: 20: 44,316 ---> 00: 20: 48.466
+>> Muy agradable. Ahora, hay otras maneras en que podemos eliminar contenido
+
+337
+00: 20: 48,483 ---> 00: 20: 50.466
+eso probablemente no es tan complicado como la escritura ... si estás
+
+338
+00: 20: 50,483 ---> 00: 20: 55.466
+en la necesidad de XML, podemos utilizar la instrucción de eliminación. Lo sé
+
+339
+00: 20: 55,166 ---> 00: 20: 57.466
+que no era ... no es tan divertido y fresco como lo acaba de hacer Tobias,
+
+340
+00: 20: 57,483 ---> 00: 21: 01.466
+pero nosotros sólo podríamos hacer un borrado de la tabla y, de nuevo, muy
+
+341
+00: 21: 01,483 ---> 00: 21: 04.466
+crítico, al igual que la cláusula de actualización. Si usted no tiene una
+
+342
+00: 21: 04,483 ---> 00: 21: 06.466
+cláusula, si hiciera un borrar de Production.UnitMeasure, lo que haria es que
+
+343
+00: 21: 06,483 ---> 00: 21: 09.466
+me va a eliminar sin una cláusula dónde? ¿Qué va a ser eliminado?
+
+344
+00: 21: 10,483 ---> 00: 21: 13.250
+Lo tienes. Todo. Por lo que queremos que se aclare por eso.
+
+345
+00: 21: 13,333 ---> 00: 21: 15,466
+Más o menos cada vez que utilice una actualización y una eliminación, vas
+
+346
+00: 21: 15,483 ---> 00: 21: 19.466
+a querer utilizar una cláusula donde se quiere evitar
+
+347
+00: 21: 19,483 ---> 00: 21: 22.466
+lo que llamo RPEs, la reanudación de la producción de eventos. Por lo que desea hacer
+
+348
+00: 21: 22.483 ---> 00: 21: 25.466
+seguro que no consigue ... tienen que generar una nueva hoja de vida, ya que
+
+349
+00: 21: 25,483 ---> 00: 21: 30.283
+suprimido 40.000 filas de información sobre el valor de verdad. Por lo tanto eliminar
+
+350
+00: 21: 30,366 ---> 00: 21: 34.466
+cualquiera que sea la tabla es donde la unidad de medida igual y especificar el
+
+351
+00: 21: 34,483 ---> 00: 21: 39.466
+criterio que desee para cumplir con el fin de que se va a eliminar esa fila.
+
+352
+00: 21: 39,233 ---> 00: 21: 42.466
+Ahora, es posible que desee eliminar todo, desde una tabla. Ahora uno
+
+353
+00: 21: 42,483 ---> 00: 21: 45.466
+manera de hacerlo es utilizar esta declaración cláusula de borrado sin una
+
+354
+00: 21: 45,216 ---> 00: 21: 47.466
+cláusula. Otra manera de hacer esto ... pero si lo haces de esta
+
+355
+00: 21: 47,483 ---> 00: 21: 50.466
+así, por cierto, esto se registra en el registro de transacciones. Si tu
+
+356
+00: 21: 50,483 ---> 00: 21: 54.300
+utilisas la tabla truncado para eliminar todos los datos, vamos a truncar
+
+357
+00: 21: 54,383 ---> 00: 21: 56.466
+la tabla. Eso significa que prácticamente no elimine la tabla, pero
+
+358
+00: 21: 56,483 ---> 00: 21: 59.466
+tomar todos los datos de la tabla. ¿Todo bien? Y lo bueno
+
+359
+00: 22: 00,483 ---> 00: 22: 02.466
+de esto, es que no va a escribir cada fila a la ...
+
+360
+00: 22: 02,483 ---> 00: 22: 05.400
+no hay registro mínimo de la información que está siendo escrito
+
+361
+00:22:05,483 ---> 00:22:07.466
+para el registro de transacciones, por lo que será mucho más rápido si usted tiene
+
+362
+00:22:08,483 ---> 00:22:12,466
+40, 50, 60, 70,000 filas de allí, será un poco más rápido
+
+363
+00:22:12,166 ---> 00:22:14.466
+para que usted sea capaz de eliminar eso.
+
+364
+00:22:14,483 ---> 00:22:16.433
+>> Especialmente digamos, tiene ...
+
+365
+00:22:16,450 ---> 00:22:16.466
+>> Un millón ....
+
+366
+00:22:16.483 ---> 00:22:17,466
+>> 5 mil millones de filas.
+
+367
+00:22:17.483 ---> 00:22:18.466
+>> Sí. Mil millones de filas.
+
+368
+00:22:18,483 ---> 00:22:20.466
+>> Sin duda habrá una gran diferencia.
+
+369
+00:22:22,333 ---> 00:22:24.466
+>> ¿No se supone que ir $ 5 millones de dólares o ...
+
+370
+00:22:25,416 ---> 00:22:29.283
+sí. Es probable que no sabe. ¿Cuál fue ese programa?
+
+371
+00:22:30,166 ---> 00:22:31.216
+>> Austin Powers.
+
+372
+00:22:31,300 ---> 00:22:31.466
+>> Austin Powers.
+
+373
+00:22:31,483 ---> 00:22:33.466
+>> Pensé que estabas haciendo referencia espectáculos suecas.
+
+374
+00:22:33,483 ---> 00:22:37.466
+>> Sí, sí. Todo bien. Así que hicimos las inserciones, actualizaciones, eliminaciones
+
+375
+00:22:37,183 ---> 00:22:39.466
+con XML, tratando de ver si hay algo aquí.
+
+376
+00:22:41.483 ---> 00:22:43.466
+No, creo que tienes las cosas interesantes, especialmente en lo que se mezcla.
+
+377
+00:22:44,483 ---> 00:22:45.183
+Y eso es bueno.
+
+378
+00:22:45,483 ---> 00:22:47.466
+Las limitaciones y los factores desencadenantes. Una de las cosas ... así que buscamos
+
+379
+00:22:47,483 ---> 00:22:51.466
+al añadir contenido y asegurarse de que podemos añadir contenido a
+
+380
+00:22:51,483 ---> 00:22:54.466
+diferentes caminos. Actualizar el contenido, borrando el contenido.
+
+381
+00:22:54,483 ---> 00:22:56.466
+Pero una de las cosas que tenemos que estar preocupados, además,
+
+382
+00:22:56,483 ---> 00:23:00.266
+es la integridad de los datos. Entonces, ¿qué podemos utilizar cuando estamos añadiendo contenido?
+
+383
+00:23:00,350 ---> 00:23:03.466
+son las limitaciones y los factores desencadenantes. Y lo que pueden hacer por nosotros es
+
+384
+00:23:03,483 ---> 00:23:07.466
+asegurarse de que lo que estamos añadiendo la oportunidad o legitimidad,
+
+385
+00:23:07,483 ---> 00:23:10.466
+y también podemos asegurarnos de que si estamos añadiendo contenido o actualizar
+
+386
+00:23:10,483 ---> 00:23:14,350
+contenido, que si hay otras tablas que necesitan ser actualizados
+
+387
+00:23:14.433 ---> 00:23:18.466
+así, podemos asegurarnos de lo que se actualiza. Así podemos crear
+
+388
+00:23:18,483 ---> 00:23:20.466
+cuatro, cinco tipos diferentes de limitaciones. Vamos a introducir cada
+
+389
+00:23:20,483 ---> 00:23:23.466
+uno de esos. Y también podemos utilizar, lo que se llaman factores desencadenantes.
+
+390
+00:23:23,483 ---> 00:23:27.466
+Así que podría tener un disparador de actualización en la tabla de empleados. Pronto
+
+391
+00:23:27.483 ---> 00:23:31.466
+la tabla de empleados, si actualizo el apellido allí, voy
+
+392
+00:23:31,483 ---> 00:23:34.466
+para disparar un disparador que va a salir y también actualizar el
+
+393
+00:23:34,483 ---> 00:23:37.466
+cuentas por pagar de la tabla o la tabla de cobrar o nómina cuentas.
+
+394
+00:23:37,483 ---> 00:23:41.466
+Así que en cualquier lugar que el apellido reside en mi base de datos, que puede tener
+
+395
+00:23:41.483 ---> 00:23:44.466
+que se vaya a cabo utilizando un disparador y actualizar todas las columnas que necesita
+
+396
+00:23:44,483 ---> 00:23:47.466
+ser actualizado para que el apellido. Así que esa es la idea de un LMD
+
+397
+00:23:47,483 ---> 00:23:51.466
+desencadenar donde yo estoy haciendo la manipulación de datos y voy a utilizar disparadores.
+
+398
+00:23:51,483 ---> 00:23:54.466
+Vamos a hablar de nuestras limitaciones. Tenemos una restricción de clave primaria.
+
+399
+00:23:55,400 ---> 00:23:57.466
+Esto es muy, muy importante cuando se está diseñando su base de datos
+
+400
+00:23:57,483 ---> 00:24:01.466
+y sus filas, sus tablas dentro de la base de datos. Lo que esto hace
+
+401
+00:24:01,483 ---> 00:24:05.166
+para usted es que asegura que tiene la singularidad de esa tabla.
+
+402
+00:24:05,250 ---> 00:24:07.466
+Prácticamente todas las mesas vas uso en bases de datos relacionales
+
+403
+00:24:07,483 ---> 00:24:10,283
+tendrá una clave principal en ella, y que la clave principal se va
+
+404
+00:24:10,366 ---> 00:24:12,466
+para exigir la unicidad. Ahora, uno de los chats llegaron más temprano
+
+405
+00:24:12,483 ---> 00:24:16.366
+fue como, bueno, ¿la clave principal tiene que ser una clave compuesta
+
+406
+00:24: 16,450 ---> 00:24:20.466
+o puede ser una clave compuesta una clave principal? Una clave compuesta es una
+
+407
+00: 24:20,483 ---> 00:24:24.416
+clave que contiene dos o más columnas. Absolutamente una clave
+
+408
+00:24:24,483 ---> 00:24: 27.466
+primaria puede ser una clave compuesta, una clave externa puede ser una clave
+
+409
+00:24:27.483 ---> 00: 24:31.466
+compuesto, una restricción única podría ser una clave compuesta. Así, una clave
+
+410
+00:24:31,483 ---> 00:24:35.400
+compuesta se finaliza, varias columnas se requiere para hacerlo único.
+
+411
+00:24:35,483 ---> 00:24:37.466
+Digamos, por ejemplo, tengo una licencia de conducir. de conducir
+
+412
+00:24:37,483 ---> 00:24:43.466
+mi número de licencia es 1234, y soy de Arizona. Ahora, Tobias también
+
+413
+00:24:43,483 ---> 00:24:47.466
+tiene una licencia de conducir y él es 1234 y que es de Washington.
+
+414
+00:24:47,183 ---> 00:24:50.466
+Pues bien, si ponemos los que están en la misma tabla, no puedo exigir la unicidad
+
+415
+00:24:50,483 ---> 00:24:53.466
+porque si tenemos sólo la clave principal en la licencia de conducir
+
+416
+00:24:53,483 ---> 00:24:57.450
+Número de 1234, el primero en que va a ganar. El segundo
+
+417
+00:24:57,483 ---> 00:25:00,200
+una es ... lo siento, no somos capaces de 1234, no podemos jugar.
+
+418
+00:25:00,283 ---> 00:25:00.466
+>> Y voy a estar por primera vez en.
+
+419
+00:25:00,483 ---> 00:25:01.466
+>> Usted no consigue una licencia de conducir.
+
+420
+00:25:01,483 ---> 00:25:03.216
+>> No, voy a estar en primer lugar.
+
+421
+00:25:03,483 ---> 00:25:07.466
+>> Entonces, ¿qué vamos a hacer es que en realidad a crear una clave principal compuesta.
+
+422
+00:25:07,183 ---> 00:25:11.466
+Así que vamos a tomar 1234 y vamos a concatenar en
+
+423
+00:25:11,166 ---> 00:25:15.333
+WA para Washington, y vamos a llevar a mi concatenar 1234 AZ.
+
+424
+00:25:15.416 ---> 00:25:18.466
+Vamos a hacer que una clave principal compuesta. Ahora que son únicos.
+
+425
+00:25:18,483 ---> 00:25:21.466
+Ahora van a utilizar las columnas juntos para hacer cumplir la singularidad.
+
+426
+00:25:21,483 ---> 00:25:24.466
+Ahora podemos trabajar juntos. Ahora los dos podemos estar en esa base de datos.
+
+427
+00:25:24,483 ---> 00:25:27.466
+AZ es alfabético antes WA, a menos que lo hacen en descendente
+
+428
+00:25:27.483 ---> 00:25:30.466
+orden, por lo que debe ganar de todos modos, pero eso es una nota al margen.
+
+429
+00:25:31.333 ---> 00:25:32.333
+[Risa]  (ง ˙o˙)ว
+
+430
+00:25:32,483 ---> 00:25:35.466
+Primero en victorias. Así que lo que podemos hacer es que podemos añadir una primaria
+
+431
+00:25:35,483 ---> 00:25:39.466
+clave para una mesa. Puede ser compuesto. Se requiere ... hace cumplir
+
+432
+00:25:39,483 ---> 00:25:43.466
+singularidad para nosotros, y casi la mayoría de las mesas van a tener
+
+433
+00:25:43,483 ---> 00:25:47.466
+que la clave principal para hacer cumplir la unicidad de los valores que son
+
+434
+00:25:47,483 ---> 00:25:50.466
+almacenado o las filas que se almacenan en la base de datos o en la mesa.
+
+435
+00:25:51,483 ---> 00:25:53.466
+Ahora, además de eso, tenemos lo que se llama una clave externa.
+
+436
+00:25:53,483 ---> 00:25:57.466
+Una clave externa también puede ser una clave compuesta. Es una combinación
+
+437
+00:25:57,483 ---> 00:26:00.466
+de una o más columnas que va a permitir que nos refiramos
+
+438
+00:26:00,483 ---> 00:26:04.466
+a la clave principal, ¿de acuerdo? Así que miramos, por ejemplo, si llegamos
+
+439
+00:26:04,483 ---> 00:26:07.466
+aquí abajo, esto es añadir uno aquí, alter table o la adición
+
+440
+00:26:07,483 ---> 00:26:11.283
+una restricción llama una clave externa. Me gusta usar el prefijo
+
+441
+00:26:11,366 ---> 00:26:13.466
+del tipo de clave al principio. Así que tenemos la clave principal,
+
+442
+00:26:13,483 ---> 00:26:16.383
+tenemos la clave externa, tenemos un par más por hacer, pero me gusta
+
+443
+00:26:16,466 ---> 00:26:19.466
+poner que al principio, así que sé qué tipo de clave que estoy trabajando.
+
+444
+00:26:19,483 ---> 00:26:22.466
+es una clave externa. Se va a hacer referencia a esta tabla llamada
+
+445
+00:26:22.483 ---> 00:26:25.466
+razón por ventas, y que va a hacer referencia a la columna de allá
+
+446
+00:26:25,483 ---> 00:26:28.466
+llamada razón de ventas ID. Y también vamos a hablar de lo
+
+447
+00:26:28,483 ---> 00:26:31.466
+que sucede si tratamos de eliminar, ¿qué ocurre si tratamos de actualizar dicha.
+
+448
+00:26:31,483 ---> 00:26:34.466
+Queremos poner en cascada que elimine o que se actualizan, de acuerdo?
+
+449
+00:26:34,483 ---> 00:26:37.466
+Por lo que queremos asegurarnos de que los que se suprimen se lleva a cabo. Si se
+
+450
+00:26:37,483 ---> 00:26:41.466
+no llevará a cabo, se pone en cascada. Así alter table o extranjera
+
+451
+00:26:41.483 ---> 00:26:46.383
+clave se utiliza para hacer referencia, normalmente una clave principal podría ser un único
+
+452
+00:26:46,466 ---> 00:26:49.383
+restricción, lo que vamos a introducir el siguiente en otra mesa.
+
+453
+00:26:49,466 ---> 00:26:52.383
+Así que si voy y estoy añadiendo un nuevo producto y uno de los productos ...
+
+454
+00:26:52,466 ---> 00:26:56.466
+uno de los elementos se encuentran en el producto es categoría, así, la categoría
+
+455
+00:26:56,483 ---> 00:26:58.466
+información no va a ser almacenada en dicha tabla. Está yendo
+
+456
+00:26:58,483 ---> 00:27:00.466
+para ser almacenados en otra tabla llamada categorías.
+
+457
+00:27:01,166 ---> 00:27:03.350
+En esa segunda tabla llamada categorías Voy a tener una primaria
+
+458
+00:27:03,433 ---> 00:27:07.216
+clave y el ID de la categoría. Voy a tener una clave externa de los productos
+
+459
+00:27:07,300 ---> 00:27:11,216
+tabla que hace referencia a que la clave principal en esa tabla de categorías.
+
+460
+00:27:11,300 ---> 00:27:14.466
+Y sólo para asegurarse de que estoy añadiendo contenido válido, que va
+
+461
+00:27:14,166 ---> 00:27:16.466
+para hacer referencia para asegurarse de que no es una categoría de allí llamada
+
+462
+00:27:16.483 ---> 00:27:18.466
+Froot Loops o algo así. No tengo ni idea de dónde saqué con Froot
+
+463
+00:27:18,483 ---> 00:27:21.466
+Bucles, pero vamos a ir con eso. Así que vamos a hacer referencia a ese
+
+464
+00:27:21,483 ---> 00:27:24.466
+Asegúrese de que sea de datos válidos que estamos añadiendo. Ahora, sólo puedo
+
+465
+00:27:24,483 ---> 00:27:28.466
+añadir una clave principal por tabla, pero puede haber otras columnas
+
+466
+00:27:28,483 ---> 00:27:31.466
+en una tabla que quiero forzar unicidad en. Así que lo que pude
+
+467
+00:27:31,483 ---> 00:27:35.466
+hacer es usar una restricción única, una restricción única que me permite
+
+468
+00:27:35,483 ---> 00:27:38.466
+para exigir la unicidad en columnas distintas de la clave principal.
+
+469
+00:27:38.483 ---> 00:27:41.450
+Así que ya vamos a exigir la unicidad con el código de estado
+
+470
+00:27:41.483 ---> 00:27:44.200
+en la licencia de conducir. Tal vez queremos para asegurarse de que un Social
+
+471
+00:27:44,283 ---> 00:27:46.433
+número de seguro va a estar ahí. Queremos para asegurarse
+
+472
+00:27:46,483 ---> 00:27:49.333
+el número de la Seguridad Social, ya que también debe ser único,
+
+473
+00:27:49,483 ---> 00:27:52.233
+pero mi clave principal ya se ha consumido con el conductor de
+
+474
+00:27:52,316 ---> 00:27:55.466
+licencia y el código del estado. Lo que podría crear una Seguridad Social ...
+
+475
+00:27:55,483 ---> 00:27:59.466
+una restricción única en la columna de la Seguridad Social para hacer cumplir
+
+476
+00:27:59,483 ---> 00:28:02.466
+la singularidad en esa columna. Se utilizan las restricciones de modo único
+
+477
+00:28:02,483 ---> 00:28:06.466
+para exigir la unicidad en columnas dentro de una tabla si su primaria
+
+478
+00:28:06,483 ---> 00:28:10.466
+tecla ya se hace cumplir singularidad en otras tablas u otras columnas
+
+479
+00:28:11,483 ---> 00:28:15.433
+dentro de esa tabla. También podemos introducir otro tipo de restricción
+
+480
+00:28:15,483 ---> 00:28:18.466
+llamado una restricción de comprobación. Esto refuerza el tipo de contenido
+
+481
+00:28:18,483 ---> 00:28:21.466
+o se añaden los valores que son. Esto aquí es un ejemplo
+
+482
+00:28:21,483 ---> 00:28:25.466
+de la tabla alternativa llamada nueva tabla. Estamos añadiendo una columna llamada
+
+483
+00:28:25,483 ---> 00:28:29.466
+Código postal. Es un valor entero con un valor nulo. Vamos a crear
+
+484
+00:28:29,483 ---> 00:28:33.400
+una restricción llamada de verificación código postal, y lo que vamos
+
+485
+00:28:33,483 ---> 00:28:35.466
+que hacer es que vamos a configurar esto para comprobar el código postal para que
+
+486
+00:28:35,483 ---> 00:28:40.283
+cuando alguien entra en el 05648 o lo que sea el código postal es,
+
+487
+00:28:40,366 ---> 00:28:42.333
+que va a asegurarse de que nadie entra 0546P
+
+488
+00:28:43,483 ---> 00:28:46.466
+porque esto va para asegurarse de que ... no puede salir y decir,
+
+489
+00:28:46,483 ---> 00:28:49.416
+bien, se trata de un código postal válido sin comprobar todo
+
+490
+00:28:49,483 ---> 00:28:53.466
+en el país, pero puede asegurarse de que nadie deje de deslizarse en forma accidental,
+
+491
+00:28:53,483 ---> 00:28:56.466
+usted sabe, pone en un carácter alfabético o algún tipo de símbolo.
+
+492
+00:28:56,483 ---> 00:28:58.466
+>> Y es mejor que sea un código postal de Estados Unidos.
+
+493
+00:28:58,483 ---> 00:29:00.466
+>> Y es mejor que sea un código postal estadounidense si nos vamos a estar
+
+494
+00:29:00,483 ---> 00:29:02.466
+haciendo eso. Exactamente. Seguro.
+
+495
+00:29:02,483 ---> 00:29:04.466
+>> Y probablemente no debería ser un número entero. Probablemente debería
+
+496
+00:29:04,483 ---> 00:29:06.466
+haber algún gráfico de barras ...
+
+497
+00:29:07,483 ---> 00:29:09.466
+>> Gráfico de barras, sí, porque hoy en día tiene el guión y los
+
+498
+00:29:09,483 ---> 00:29:11.466
+otros tres o cuatro personajes ...
+
+499
+00:29:11,483 ---> 00:29:14.466
+>> Usted está utilizando como, y como se utiliza en cadenas, por lo ...
+
+500
+00:29:14,483 ---> 00:29:18.466
+>> Oh, Te tengo. Exactamente. Sí. Así que esto haría cumplir ese tipo
+
+501
+00:29:18,483 ---> 00:29:21.466
+de datos o de los valores que se agrega. Asegúrese de que no hay
+
+502
+00:29:21,233 ---> 00:29:25.466
+la adición de cualquier tipo de contenido inapropiado aquí. El último tipo
+
+503
+00:29:25,483 ---> 00:29:26.466
+de la restricción de que vamos a hablar de ...
+
+504
+00:29:26,483 ---> 00:29:28.466
+>> ¿Tiene ejemplos de contenido inapropiado?
+
+505
+00:29:28,483 ---> 00:29:35.466
+>> Que acabo de decir, como 0546P, que sería apropiado para esta columna.
+
+506
+00:29:35,483 ---> 00:29:36.466
+>> Veo. Ya veo.
+
+507
+00:29:36,483 ---> 00:29:37.466
+>> Sólo por esta columna.
+
+508
+00:29:37,483 ---> 00:29:38.466
+>> Suena muy apropiado.
+
+509
+00:29:38.483 ---> 00:29:39.466
+>> Lo hace.
+
+510
+00:29:41.483 ---> 00:29:42.466
+Bueno, estaban saltando ... saltaste todo, como baba
+
+511
+00:29:42,483 ---> 00:29:43.466
+en un bebé.
+
+512
+00:29:45,483 ---> 00:29:47.466
+Así que la próxima, en la última restricción que vamos a hablar de
+
+513
+00:29:47,483 ---> 00:29:50.466
+está en restricción predeterminada. Si hay valores que probablemente es ...
+
+514
+00:29:51,450 ---> 00:29:51.466
+va a ser recogido en el presente ...
+
+515
+00:29:52,166 ---> 00:29:52.466
+>> Sí.
+
+516
+00:29:52,483 ---> 00:29:55.466
+>> No soy de Suecia, por lo que. Alter table, vamos a añadir un
+
+517
+00:29:55,483 ---> 00:30:00.466
+restricción predeterminada. El código de región del país por defecto va
+
+518
+00:30:00,200 ---> 00:30:00.466
+ser EE.UU..
+
+519
+00:30:01,483 ---> 00:30:02.166
+Todo bien.
+
+520
+00:30:02,483 ---> 00:30:04.466
+>> ¿Es eso realmente ... me pareció que era Estados Unidos, que es la región
+
+521
+0030:04,483 ---> 00:30:06.466
+Código de los EE.UU..
+
+522
+00:30:06,483 ---> 00:30:08.466
+>> Podría ser. Sólo estaba ... pensé que quería una razón para
+
+523
+00:30:08,483 ---> 00:30:11.416
+decir por qué tiene que ser de Estados Unidos, ¿por qué no puede ser de Suecia?
+
+524
+00:30:11,483 ---> 00:30:13.383
+¿Cuál es el código de Suecia?
+
+525
+00:30:13,450 ---> 00:30:13.466
+>> SE.
+
+526
+00:30:13,483 ---> 00:30:19.466
+>> SE? Bueno. Así podríamos añadir los Estados Unidos o SE como predeterminado ... me olvidaba
+
+527
+00:30:19,483 ---> 00:30:21.466
+estaba trabajando con él hoy o me habría hecho esta
+
+528
+00:30:21,483 ---> 00:30:25.466
+SE para que sea seguro, pero, por lo que en lugar de que yo tenga que suministrar cuando
+
+529
+00: 30: 25,483 ---> 00: 30: 29.466
+Estoy haciendo inserto, en lugar de que yo tenga que abastecer al país
+
+530
+00:30:29,166 ---> 00:30:33.466
+código, sería, por defecto, si no suministrar SE, por ejemplo,
+
+531
+00:30:33,483 ---> 00:30:36.466
+sería por defecto que rellenar con EE.UU.. Así que sólo lo hace
+
+532
+00:30:36,483 ---> 00:30:39.350
+un poco más fácil cuando estamos añadiendo contenido en una tabla.
+
+533
+00:30:39.333 ---> 00:30:41.416
+[Risa]  (ง ˙o˙)ว
+
+534
+00:30:41,433 ---> 00:30:43.466
+>> Muy bien. Así que estos son los cinco tipos diferentes de restricciones
+
+535
+00:30:43,483 ---> 00:30:46.466
+que se utilizan para hacer cumplir el tipo de datos que se agrega.
+
+536
+00:30:46,483 ---> 00:30:49.166
+Estamos tratando de asegurarse de que el contenido que se añade no es basura.
+
+537
+00:30:49.250 ---> 00:30:50.466
+>> Y estamos es hacer cumplir EE.UU..
+
+538
+00:30:50,483 ---> 00:30:51.466
+>> Y lo que debemos hacer es cumplir EE.UU..
+
+539
+00:30:51,483 ---> 00:30:52.466
+>> Es EE.UU..
+
+540
+00:30:52,483 ---> 00:30:54.466
+>> Y, por cierto, vamos a hacer esa mesa, que las columnas
+
+541
+00:30:54,483 ---> 00:30:56.466
+por lo que no se puede anular. Tiene que ser EE.UU..
+
+542
+00:30:57,483 ---> 00:30:59.466
+O SE. Todo bien.
+
+543
+00:31:00,483 ---> 00:31:03.466
+Así que esas son las limitaciones de la idea de que podemos utilizar cuando querramos
+
+544
+00:31:03,216 ---> 00:31:05.466
+insertar o actualizar el contenido. La otra idea que queremos
+
+545
+00:31:06,0 ---> 00:31:09.433
+mirar son los desencadenadores DML, y un disparador, una vez más, es una forma de
+
+546
+00:31:09,483 ---> 00:31:11.466
+Estados Unidos que podría ser tan simple como, bueno, voy a entrar ahí
+
+547
+00:31:11,483 ---> 00:31:14.466
+y crear un disparador en una tabla de clientes. Después de que alguien hace
+
+548
+00:31:14,483 ---> 00:31:17,466
+una inserción o una actualización, sólo quieren enviar un mensaje. yo quiero
+
+549
+00:31:17.483 ---> 00:31:21.400
+para elevar un error aparece o puedo usar los XP enviar correo, y
+
+550
+00:31:21,483 ---> 00:31:25.466
+puede enviar un correo electrónico al gerente y decir, hey, un nuevo cliente de
+
+551
+00:31:25,483 ---> 00:31:30,0
+añadido a esta tabla. Podríamos utilizarlo para un XML, un disparador para eso.
+
+552
+00:31:30,483 ---> 00:31:33.250
+Podríamos utilizar un disparador para asegurarse de que los datos se mantiene consistente.
+
+553
+00:31:33,333 ---> 00:31:36.400
+Y por lo que entrar y tenemos un disparador en la última columna de nombre
+
+554
+00:31:36,483 ---> 00:31:38.466
+de la tabla de empleados, y que el gatillo está siempre si hay una
+
+555
+00:31:39,166 ---> 00:31:43.466
+actualización de dicha columna en esa tabla, quiero un disparador así que va
+
+556
+00:31:43,483 ---> 00:31:48.466
+a cuentas a pagar o que sale a la nómina, y también cambia
+
+557
+00:31:48,483 ---> 00:31:51.466
+el último nombre en la mesa y se realiza una tabla que cualquier otra
+
+558
+00:31:51,483 ---> 00:31:55.216
+contiene el apellido. Por lo que también puede tener un disparador que es
+
+559
+00:31:55,300 ---> 00:31:59.466
+asignado a una tabla que se disparará o un incendio y que va a causar
+
+560
+00:31:59,483 ---> 00:32:01.466
+una actualización que tenga lugar en cualquier otra tabla.
+
+561
+00:32:01,483 ---> 00:32:05.466
+>> Y hay algunas cosas a la clase de mencionar aquí, también.
+
+562
+00:32:06,0 ---> 00:32:07.466
+Una cosa que sólo quiero mencionar ... vamos a entrar en un poco
+
+563
+00:32:08,0 ---> 00:32:12,466
+más adelante en la clase ... pero es probable que desee utilizar un saque de banda
+
+564
+00:32:12,483 ---> 00:32:15,466
+declaración, que es nuevo en SQL Server 2012, más que el aumento
+
+565
+00:32:17.233 ---> 00:32:21,0
+declaración de error que tenemos aquí abajo. Vamos a hablar un poco más
+
+566
+00:32:21,483 ---> 00:32:23.466
+por eso más tarde. Pero la otra cosa que es digno de mención acerca
+
+567
+00:32:23,483 ---> 00:32:27.466
+desencadenantes son los usos más comunes de los disparadores es realmente ...
+
+568
+00:32:27,183 ---> 00:32:32.466
+uno es, al igual que Brian se ha mencionado, para validar algún tipo de ...
+
+569
+00:32:32,483 ---> 00:32:36.466
+integridad más complejo que no se puede averiguar con restricciones de comprobación,
+
+570
+00:32:36,166 ---> 00:32:37.216
+claves externas y así sucesivamente,
+
+571
+00:32:38.483 ---> 00:32:41.200
+Que suele ser una buena idea.
+
+572
+00:32:41,283 ---> 00:32:44.466
+Y, obviamente, los factores desencadenantes más que añadir, la mayor complejidad
+
+573
+00:32:44,483 ---> 00:32:47.366
+que tiene y no puede haber consecuencias en el rendimiento.
+
+574
+00:32:47,483 ---> 00:32:50.466
+La otra cosa que también es muy común es actualizar desnormalizado
+
+575
+00:32:51,333 ---> 00:32:54.333
+datos, por lo que tiene las cosas muy bien normalizados primero y hay o
+
+576
+00:32:54,483 ---> 00:32:56.466
+no hay duplicados en cualquier lugar, pero luego una cosa común cuando llegue
+
+577
+00:32:57,483 ---> 00:33:00.466
+los problemas de rendimiento es, ah, tal vez tenga esta columna aquí,
+
+578
+00:33:00,483 ---> 00:33:03.466
+así, y entonces yo no necesito para dibujar en estos seis cuadros a
+
+579
+00:33:03,483 ---> 00:33:07.466
+obtener este conjunto de resultados. Y entonces es bastante común el uso de disparadores
+
+580
+00:33:07,483 ---> 00:33:10.466
+ir y en realidad actualizar esta otra columna cuando las cosas suceden,
+
+581
+00:33:10,483 ---> 00:33:13.466
+y que se puede obtener en problemas si hay una gran cantidad de cambios
+
+582
+00:33:13,483 ---> 00:33:17,466
+o inserciones o lo que sea que estés disparo en. Así que vale la pena considerar
+
+583
+00:33:17.483 ---> 00:33:20.466
+por qué siempre tiene que estar absolutamente al día. Si la respuesta
+
+584
+00:33:20,483 ---> 00:33:24.466
+es no, usted es probablemente mejor de tener algo así como un puesto de trabajo
+
+585
+00:33:24,233 ---> 00:33:28.466
+que se ejecuta en algún horario y actualiza estos cambios.
+
+586
+00:33:31,483 ---> 00:33:33.466
+>> Muy bien. Buena información. La última pieza que queremos ver
+
+587
+00:33:33,483 ---> 00:33:36.466
+a es la cláusula de salida que se utiliza para devolver información desde
+
+588
+00:33:37,166 ---> 00:33:41.466
+cualquier tipo de expresión o cuando estamos realizando un inserto
+
+589
+00:33:41.483 ---> 00:33:44.333
+actualizar o borrar. Aquí está un ejemplo de cómo crearíamos eso.
+
+590
+00:33:45,483 ---> 00:33:49.466
+Observe en la salida deleted.asterisk carrito de compras punto de venta de borrado aquí lo que tenemos.
+
+591
+00:33:49,483 ---> 00:33:52.466
+Eso deleted.asterisk salida especifica que todas las columnas de la
+
+592
+00:33:52,483 ---> 00: 33:56.466
+filas eliminadas, que van a ser devueltos a la aplicación que
+
+593
+00:33:56,483 ---> 00:33:59.466
+llama que eliminar. Así que en este caso aquí podría ser de consulta justo
+
+594
+00:33:59,183 ---> 00:34:01.466
+editor que está llamando que eliminar. Y entonces lo que haremos es que
+
+595
+00:34:01,483 ---> 00:34:03.466
+comprobaremos en las filas de nuestro partido con la cláusula where que ha
+
+596
+00:34:03,483 ---> 00:34:06.466
+sido eliminado. Volveremos después. Así que vamos a eliminar
+
+597
+00:34:06,483 ---> 00:34:10.466
+sales.shopping carrito deleted.asterisk salida de elemento en el que las compras
+
+598
+00:34:10,483 ---> 00:34:14.466
+carrito ID es igual a 20621, y luego vamos a verificar que se ha eliminado ese elemento.
+
+599
+00:34:14,483 ---> 00:34:16.466
+>> Brian, Brian, Brian, se les mostrará una demo?
+
+600
+00:34:16.483 ---> 00:34:18.466
+>> Usted ... Me encantaría que se les mostrata una demo.
+
+601
+00:34:18,483 ---> 00:34:22.466
+>> Ah. Gracias. Así que en realidad, esta cláusula de salida ...
+
+602
+00:34:22.483 ---> 00:34:24.316
+>> ¿Esto va a ser en sueco o en Inglés?
+
+603
+00:34:24.450 ---> 00:34:24.466
+>> Ah, sueco.
+
+604
+00:34:25,166 ---> 00:34:27.466
+Oop. Ahora, la cláusula de salida ...
+
+605
+00:34:29,483 ---> 00:34:31.466
+quedémonos con Inglés.
+
+606
+00:34:31,166 ---> 00:34:31.466
+>> Muy bien. Gracias.
+
+607
+00:34:31,483 ---> 00:34:35.466
+>> Por lo tanto la actualización o esta cláusula de salida es super útil. Se cae
+
+608
+00:34:35,483 ---> 00:34:38.466
+en, ya sabes, un poco de la misma cubeta como funciona esta Ventana
+
+609
+00:34:38.483 ---> 00:34:43.466
+que son una especie de mágico. Esto probablemente no es tan alto de una barra
+
+610
+00:34:43,483 ---> 00:34:47.466
+para entrar. Es bastante fácil de usar, pero es super, super útil.
+
+611
+00:34:47,166 ---> 00:34:52.466
+Por lo que sólo el ejemplo común es realmente pongo al día, digamos,
+
+612
+00:34:52,483 ---> 00:34:59.466
+la producción, la tabla de productos y quiero fijar la columna de nombre
+
+613
+00:35:00,166 ---> 00:35:03.183
+en mayúsculas, digamos. Así que sólo voy a decir el nombre superior.
+
+614
+00:35:04,266 ---> 00:35:10.466
+Y después de hacer esto, yo quiero ir y hacer algo más con
+
+615
+00:35:10,483 ---> 00:35:13.466
+estos productos en particular. Se puede llegar fácilmente en un problema aquí.
+
+616
+00:35:13,483 ---> 00:35:17.400
+Digamos que tengo una cláusula aquí y donde el precio de lista
+
+617
+00:35:17.483 ---> 00:35:21.466
+es mayor que diez, ¿verdad? Digamos que se trata de una transacción.
+
+618
+00:35:21,483 ---> 00:35:24.466
+voy a entrar en las transacciones más tarde, pero digamos que puedo actualizar en primer lugar,
+
+619
+00:35:25,483 ---> 00:35:28.200
+y ahora después de que quiero ir y hacer algo más con exactamente
+
+620
+00:35:28,283 ---> 00:35:31.466
+estos productos, la verdadera, a actualizan? Así que primero se aumenta la
+
+621
+00:35:32,166 ---> 00:35:34.366
+precio, y luego vamos a ir y hacer algunas otras cosas con otra
+
+622
+00:35:34,483 ---> 00:35:38.466
+tablas relacionadas con estos productos. Un problema es que si sólo
+
+623
+00:35:38.483 ---> 00:35:42.466
+utilizar la cláusula misma, donde, si otra persona inserta filas después de
+
+624
+00:35:42,483 ---> 00:35:45.466
+mi actualización que coincidía con la cláusula where, ¿verdad? ... donde la lista
+
+625
+00:35:45,483 ---> 00:35:49.366
+precio es mayor que diez, mi actualización puede afectar a diez filas.
+
+626
+00:35:49.450 ---> 00:35:52,0
+Otra persona insertar la fila 11, por lo que la siguiente afirmación de que
+
+627
+00:35:52,483 ---> 00:35:55.466
+va y hace algo actualiza ahora o gestiona 11 filas.
+
+628
+00:35:55,483 ---> 00:35:56.233
+>> Ajá.
+
+629
+00:35:56,316 ---> 00:35:58.466
+>> Bueno? Eso se llama análisis inconsistente, y
+
+630
+00:36:01,483 ---> 00:36:05.466
+es necesario tener un tipo diferente de bloqueo en su lugar para proteger
+
+631
+00:36:05,483 ---> 00:36:08.350
+contra ellos. Pero la cláusula de actualización o la cláusula de salida
+
+632
+00:36:08,433 ---> 00:36:11,466
+puede realmente ayudar aquí. Así que lo que puedo hacer es ...
+
+633
+00: 36: 12,383 ---> 00: 36: 14.466
+o eso se llama fila fantasma, lo siento.
+
+634
+00: 36: 15,483 ---> 00: 36: 21,450
+El análisis no es incompatible. Así que puedo decir, hey, la producción del producto
+
+635
+00: 36: 21,483 ---> 00: 36: 26.466
+identificación de todas estas filas, y se puede decir en como una variable de tabla
+
+636
+00: 36: 27,0 ---> 00: 36: 33.466
+o algo así, pero vamos a hacer esto. Oh. Lo siento. y la salida
+
+637
+00: 36: 33,483 ---> 00: 36: 37.166
+identificación insert.product. Así que en una actualización insertado se referirá a la
+
+638
+00: 36: 37,250 ---> 00: 36: 39.466
+nuevo valor, y obviamente no ha cambiado el ID del producto, y se elimina
+
+639
+00: 36: 39,483 ---> 00: 36: 43.466
+se referirá a el valor antiguo. Así que si hago esto, ahora puedo ver,
+
+640
+00: 36: 43,483 ---> 00: 36: 48.466
+ah, 291 filas devueltas, y esos son exactamente los productos que
+
+641
+00: 36: 48,166 ---> 00: 36: 48.466
+yo actualice.
+
+642
+00: 36: 49,483 ---> 00: 36: 52.400
+Así que lo que ahora es, ¿puedo obviamente en el lado del cliente sólo
+
+643
+00: 36: 52,483 ---> 00: 36: 56.183
+devolver este, sé que aumenté exactamente estos productos.
+
+644
+00: 36: 56,483 ---> 00: 36: 59.466
+La otra cosa que podría hacer es lo que puedo decir, oh, voy a tener una mesa
+
+645
+00: 36: 59,483 ---> 00: 37: 03.216
+variable que contiene
+
+646
+00: 37: 06,483 ---> 00: 37: 08.466
+esta columna ID de producto,
+
+647
+00: 37: 14,250 ---> 00: 37: 20.466
+y ahora puedo ir y hacer en ese identificador de producto o esa variable mesa,
+
+648
+00: 37: 21,483 ---> 00: 37: 25.266
+y ahora exactamente estos identificadores de producto están ahí, por lo que, posteriormente,
+
+649
+00: 37: 25,350 ---> 00: 37: 29.466
+en las consultas que ahora puede empezar a unirse con esta variable de tabla
+
+650
+00: 37: 29,483 ---> 00: 37: 34.466
+y contendrá exactamente esas columnas que usted ... o aquellas
+
+651
+00: 37: 34,483 ---> 00: 37: 37.466
+filas que se actualiza. Así que ahora usted no tiene que preocuparse por problemas
+
+652
+00: 37: 38,0 ---> 00: 37: 41.466
+tales como filas fantasma, y ​​no es necesario aumentar el bloqueo
+
+653
+00: 37: 41.483 ---> 00: 37: 46.216
+y el nivel de aislamiento que básicamente podría disminuir
+
+654
+00: 37: 46,483 ---> 00: 37: 48.466
+sus posibilidades de tener una buena concurrencia.
+
+655
+00: 37: 50,400 ---> 00: 37: 50.466
+>> Muy bien.
+
+656
+00: 37: 50,483 ---> 00: 37: 54.233
+Excepcional. Así que vamos a terminar con esto. Apenas entramos
+
+657
+00: 37: 54,316 ---> 00: 37: 57.466
+a través de algunas de las declaraciones DML a diferencia de lo que se dijo en el
+
+658
+00: 37: 57,483 ---> 00: 38: 01.466
+frente, DML, y éstos incluyen la inserción, actualización, supresión.
+
+659
+00: 38: 01,483 ---> 00: 38: 04.466
+Os mostramos diferentes formas para insertar contenido, específicamente
+
+660
+00: 38: 04,483 ---> 00: 38: 08.466
+con el inserto en la declaración, la instrucción de selección, la sentencia exec.
+
+661
+00: 38: 08,483 ---> 00: 38: 09.466
+Hablamos de select into.
+
+662
+00: 38: 10,483 ---> 00: 38: 13.466
+También les dijimos cómo podríamos utilizar la actualización o fusión. Tenemos
+
+663
+00: 38: 13,166 ---> 00: 38: 15,466
+una demostración sobre el uso de una combinación de actualización de contenidos.
+
+664
+00: 38: 15,483 ---> 00: 38: 19.233
+Diferentes maneras para nosotros para eliminar los datos incluyen la instrucción de eliminación
+
+665
+00: 38: 19,316 ---> 00: 38: 22.466
+o truncar declaración mesa, que se puede utilizar para eliminar la
+
+666
+00: 38: 23,166 ---> 00: 38: 25.466
+contenido o bien una fila, o si desea borrar todo
+
+667
+00: 38: 25,483 ---> 00: 38: 28.466
+en una tabla, sólo tiene que utilizar un borrado sin una cláusula where o utilizar el
+
+668
+00: 38: 29,0 ---> 00: 38: 32.466
+truncar opción de tabla. Hablamos de la propiedad de identidad
+
+669
+00: 38: 32,233 ---> 00: 38: 35.466
+frente a la propiedad secuencia. La secuencia es nueva en 2010 ... o 12,
+
+670
+00: 38: 35,483 ---> 00: 38: 38.466
+y lo que esto va a hacer por nosotros es que es más de un nivel de base de datos
+
+671
+00: 38: 38.483 ---> 00: 38: 42.450
+secuencia o columna que se puede utilizar, y todavía tengo la semilla
+
+672
+00: 38: 42,483 ---> 00: 38: 45.466
+en valores de incremento puedo fijar frente a la propiedad de identidad que es
+
+673
+00: 38: 45,483 ---> 00: 38: 47.333
+estado alrededor por un tiempo. Eso es más de una tabla.
+
+674
+00: 38: 47,483 ---> 00: 38: 50.466
+Pero, de nuevo, yo puede suministrar esta semilla en el valor de incremento para eso.
+
+675
+00: 38: 50,483 ---> 00: 38: 53.466
+Hablamos de los cinco diferentes tipos de restricciones que
+
+676
+00: 38: 53,483 ---> 00: 38: 56.466
+podemos utilizar: La clave principal, la clave externa, lo único, lo
+
+677
+00: 38: 56,483 ---> 00: 38: 59.466
+cheque, y la restricción predeterminada. Y luego también hablamos de
+
+678
+00: 38: 59,483 ---> 00: 39: 05.466
+el uso de desencadenadores DML, y como se señaló Tobias, que especifica
+
+679
+00: 39: 05,483 ---> 00: 39: 08.466
+el uso de error aumento. Más adelante vamos a usar un saque de banda.
+
+680
+00: 39: 08,483 ---> 00: 39: 11,383
+Vamos a hablar de lo que sería un poco más beneficioso.
+
+681
+00: 39: 11,466 ---> 00: 39: 13.466
+Así que tomemos sobre un tramo de diez minutos y nos vamos a tomar ...
+
+682
+00: 39: 13,483 ---> 00: 39: 17,466
+volver aquí. Vamos a continuar nuestra discusión en el siguiente módulo
+
+683
+00: 39: 17.483 ---> 00: 39: 19.466
+donde vamos a hablar de algunos elementos de programación, algunos
+
+684
+00: 39: 19,483 ---> 00: 39: 23.466
+Manejo de errores, y ahí es donde vamos a introducir artículos
+
+685
+00: 39: 23,483 ---> 00: 39: 27.466
+como el lanzamiento y recuperación. Así que veremos de nuevo aquí en alrededor
+
+686
+00: 39: 27.483 ---> 00: 39: 29.316
+diez minutos. Disfrutar de las vacaciones.
+
